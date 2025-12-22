@@ -1,0 +1,21 @@
+//
+//  Config.swift
+//  SprachMeister
+//
+//  Configuration for API keys and sensitive data
+//  Created on 24.10.2025
+//
+//  SETUP INSTRUCTIONS:
+//  1. Copy this file and rename to "Config.swift"
+//  2. Replace the placeholder with your actual API key
+//  3. Get your key at: https://openrouter.ai/keys
+//
+
+import Foundation
+
+/// Configuration for API keys and sensitive data
+enum Config {
+    /// OpenRouter API key for LLM text analysis
+    /// Get your key at: https://openrouter.ai/keys
+    static let openRouterAPIKey = "YOUR_OPENROUTER_API_KEY_HERE"
+}

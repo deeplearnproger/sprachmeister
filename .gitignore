@@ -30,8 +30,15 @@ Carthage/Build/
 
 # API Keys and Sensitive Data
 **/Config.swift
+*.env
+.env.*
+secrets/
 
 # LLM Models (too large for git)
 *.gguf
 LLMModels/
+
+# Misc
 old icons/
+*.bak
+*.tmp

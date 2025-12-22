@@ -1,161 +1,117 @@
-# AITalkingApp - Goethe B1 Mündliche Prüfung Trainer
+# SprachMeister
 
-iOS приложение для практики устной части экзамена Goethe B1 Zertifikat Deutsch.
+An iOS app for practicing German language skills through AI-powered conversations and writing exercises.
 
-## 🎯 Особенности
+## Features
 
-- ✅ **Полностью offline** - вся обработка на устройстве
-- 🎤 **Автоматическое распознавание речи** - немецкий STT (SFSpeech)
-- 🗣️ **Синтез речи** - немецкая TTS для обратной связи
-- 📊 **Детальные метрики** - WPM, филлеры, грамматика, словарь
-- 🏆 **3 типа сценариев** - все части экзамена B1
-- 📱 **Free provisioning** - без платного Apple Developer
-- 💾 **Локальная история** - сохранение всех попыток
+### Sprechen (Speaking)
+- Practice speaking with AI-powered conversations
+- Real-time speech recognition (German STT)
+- Natural text-to-speech responses
+- Detailed metrics: WPM, filler words, grammar analysis
+- Multiple exam scenarios (Goethe B1 style)
 
-## 🚀 Быстрый старт
+### Schreiben (Writing)
+- Writing practice with AI feedback
+- Grammar and style correction
+- Vocabulary analysis
+- Progress tracking and history
 
-### 1. Откройте проект в Xcode
+### General
+- Fully offline speech processing (on-device)
+- Local data storage
+- Modern SwiftUI interface
+- Dark/Light mode support
 
+## Requirements
+
+- iOS 16.0+
+- Xcode 15.0+
+- Swift 5.9+
+
+## Setup
+
+1. Clone the repository
 ```bash
-cd "/Users/t.abkiliamov/Documents/deutsch app/AITalkingApp"
-open AITalkingApp.xcodeproj
+git clone https://github.com/YOUR_USERNAME/SprachMeister.git
+cd SprachMeister
 ```
 
-### 2. Добавьте файлы в проект
-
-**ВАЖНО:** Новые файлы уже созданы, но нужно добавить их в Xcode:
-
-1. В Project Navigator → щелкните правой кнопкой на `AITalkingApp`
-2. **Add Files to "AITalkingApp"...**
-3. Выберите папки: `Models`, `Services`, `Orchestration`, `Views`, `Utils`
-4. Также добавьте `Info.plist`
-5. Убедитесь что "Create groups" выбрано
-6. Нажмите **Add**
-
-### 3. Настройте подписание
-
-1. **Project Settings** → **Signing & Capabilities**
-2. Выберите свой Apple ID в **Team**
-3. Xcode автоматически создаст профиль
-
-### 4. Запустите на устройстве
-
-1. Подключите iPhone (iOS 16+)
-2. Выберите устройство в Xcode
-3. **Cmd + R** для запуска
-4. На iPhone: **Settings → General → VPN & Device Management** → доверьте сертификату
-
-### 5. Первый запуск
-
-1. Разрешите доступ к **микрофону**
-2. Разрешите **распознавание речи**
-3. Загрузите немецкий голос: **Settings → Accessibility → Spoken Content → Voices → German**
-4. Готово! 🎉
-
-## 📁 Структура проекта
-
+2. Configure API Key (for AI features)
+```bash
+cp SprachMeisterApp/Schreiben/Services/Config.swift.example SprachMeisterApp/Schreiben/Services/Config.swift
 ```
-AITalkingApp/
-├── Models/               # 5 файлов - модели данных
-├── Services/             # 5 файлов - бизнес-логика
-├── Orchestration/        # 1 файл - state machine
-├── Views/                # 4 файла - UI компоненты
-├── Utils/                # 2 файла - утилиты (VAD, Metrics)
-├── ContentView.swift     # Главный view
-├── AITalkingAppApp.swift # App entry point
-└── Info.plist            # Разрешения
+Then edit `Config.swift` and add your OpenRouter API key.
+
+3. Open in Xcode
+```bash
+open SprachMeister.xcodeproj
 ```
 
-**Всего:** 19 Swift файлов + 1 plist
+4. Configure signing
+   - Open project settings
+   - Select your Team in Signing & Capabilities
+   - Xcode will create a provisioning profile automatically
 
-## 🎓 Использование
+5. Run on device
+   - Connect your iPhone (iOS 16+)
+   - Select your device in Xcode
+   - Press Cmd+R to build and run
+   - On iPhone: Settings → General → VPN & Device Management → Trust the certificate
 
-### Сценарии экзамена
+## First Launch
 
-#### 1️⃣ Bildbeschreibung (Teil 1)
-- Опишите изображение
-- Ответьте на вопросы о деталях
-- ~2 минуты
+1. Allow microphone access when prompted
+2. Allow speech recognition when prompted
+3. For best TTS quality, download German voice: Settings → Accessibility → Spoken Content → Voices → German
 
-#### 2️⃣ Mini-Präsentation (Teil 2)
-- Короткая презентация на тему
-- Ответы на уточняющие вопросы
-- ~3 минуты
+## Architecture
 
-#### 3️⃣ Dialog/Planung (Teil 3)
-- Планирование события с экзаменатором
-- Обсуждение деталей
-- ~4 минуты
+```
+SprachMeisterApp/
+├── DesignSystem/          # Reusable UI components and tokens
+│   ├── Components/        # DSButton, DSCard, DSChip, etc.
+│   └── Tokens/            # Theme (colors, typography, spacing)
+├── Sprechen/              # Speaking practice module
+│   ├── Models/            # Data models
+│   ├── Views/             # UI screens
+│   ├── Services/          # Audio, STT, TTS services
+│   ├── Orchestration/     # Conversation state machine
+│   └── Utils/             # VAD, Metrics analyzer
+├── Schreiben/             # Writing practice module
+│   ├── Models/            # Writing task, attempt models
+│   ├── Views/             # Editor, results, history views
+│   └── Services/          # Checkers, storage, export
+└── Shared/                # Shared components
+```
 
-### Процесс практики
+## Technologies
 
-1. **Выберите сценарий** на главном экране
-2. **Слушайте вопрос** от AI экзаменатора
-3. **Нажмите "Aufnehmen"** для записи ответа
-4. **Говорите** - запись остановится автоматически (VAD)
-5. **Получите обратную связь** - новый вопрос или метрики
-6. **Повторите** несколько раундов
-7. **Просмотрите результаты** - метрики и транскрипт
+- **SwiftUI** - Modern declarative UI
+- **AVFoundation** - Audio recording and playback
+- **Speech** - On-device speech recognition
+- **Accelerate** - VAD (Voice Activity Detection)
+- **async/await** - Modern concurrency
 
-### Метрики
+## Privacy
 
-После завершения сессии вы увидите:
+- Voice recordings are processed locally on device
+- Writing exercises use secure AI services for analysis
+- Progress data is stored locally
+- No personal data is shared with third parties
 
-- ⏱️ **Длительность** разговора
-- 💬 **Слов в минуту** (WPM) - скорость речи
-- 📚 **Лексическое разнообразие** - богатство словаря
-- 🚫 **Филлеры** - "äh", "ähm", "also" и т.д.
-- ✏️ **Грамматика** (базовая) - артикли, позиция глагола
-- 🏅 **Общая оценка** - Ausgezeichnet/Gut/Befriedigend/Verbesserungsbedarf
+See our [Privacy Policy](docs/index.html) for more details.
 
-## 📖 Документация
+## Support
 
-- **[SETUP_INSTRUCTIONS.md](SETUP_INSTRUCTIONS.md)** - детальная инструкция
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - архитектура и компоненты
+For questions or feedback, please open an issue on GitHub or contact support@sprachmeister.app
 
-## 🔧 Технологии
+## License
 
-- **Swift 5.9+** с async/await
-- **SwiftUI** - UI framework
-- **AVFoundation** - аудио запись/воспроизведение
-- **Speech** - распознавание речи (SFSpeech)
-- **Accelerate** - VAD обработка
-- **iOS 16.0+** (рекомендуется 17.0+)
+This project is proprietary software. See [LICENSE](LICENSE) for details.
 
-## 🐛 Устранение неполадок
-
-### Проблема: Нет звука при TTS
-**Решение:** Загрузите немецкий голос в iOS Settings → Accessibility → Spoken Content → Voices
-
-### Проблема: Распознавание не работает
-**Решение:** Проверьте Settings → Privacy → Speech Recognition → разрешите доступ
-
-### Проблема: Приложение перестало запускаться через 7 дней
-**Решение:** Это ограничение free provisioning. Пересоберите в Xcode (Cmd+R)
-
-### Проблема: Файлы не найдены при сборке
-**Решение:** Убедитесь что все папки добавлены в проект через "Add Files to..."
-
-## 🔮 Планы развития (Post-MVP)
-
-- [ ] Интеграция **Whisper** для полного offline режима
-- [ ] Загрузка **изображений** для Bildbeschreibung
-- [ ] **NLP грамматика** через CoreML
-- [ ] **Экспорт** в PDF
-- [ ] **iCloud синхронизация**
-- [ ] **Темная тема**
-- [ ] **Адаптивная сложность**
-
-## 📝 Лицензия
-
-Учебный проект для подготовки к Goethe B1.
-
-## 🙏 Благодарности
-
-Создано для практики устной части экзамена Goethe-Zertifikat B1.
+You may view the source code for reference purposes only. Copying, modification, or redistribution is not permitted without written permission.
 
 ---
 
-**Viel Erfolg! 🇩🇪✨**
-
-Дата создания: 20.10.2025
+Made with love for German learners
