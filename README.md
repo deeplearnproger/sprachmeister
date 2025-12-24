@@ -100,11 +100,11 @@ SprachMeisterApp/
 - Progress data is stored locally
 - No personal data is shared with third parties
 
-See our [Privacy Policy](https://abkiliamov.com/sprachmeister/privacy) for more details.
+See our [Privacy Policy](https://abkiliamov.com/sprachmeister) for more details.
 
 ## Support
 
-For questions or feedback, please open an issue on GitHub or contact support@sprachmeister.app
+For questions or feedback, please open an issue on GitHub or contact tymarbeit@gmail.com
 
 ## License
 
