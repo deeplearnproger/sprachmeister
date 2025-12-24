@@ -100,7 +100,7 @@ SprachMeisterApp/
 - Progress data is stored locally
 - No personal data is shared with third parties
 
-See our [Privacy Policy](docs/index.html) for more details.
+See our [Privacy Policy](https://abkiliamov.com/sprachmeister/privacy) for more details.
 
 ## Support
 
